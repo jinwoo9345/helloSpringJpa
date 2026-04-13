@@ -17,6 +17,10 @@ public class CategoryService {
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
+    // 카테고리 전체 조회
+    public List<Category> findAllCategories() {
+        return categoryRepository.findAll();
+    }
 
     // 카테고리 등록
     @Transactional // readOnly 오버라이드 → 쓰기 허용
@@ -25,11 +29,6 @@ public class CategoryService {
         categoryRepository.findByName(name)
                 .ifPresent(c -> { throw new DuplicateCategoryException(name); });
         return categoryRepository.save(new Category(name));
-    }
-
-    // 카테고리 전체 조회
-    public List<Category> findAll() {
-        return categoryRepository.findAll();
     }
 
     // 카테고리 삭제

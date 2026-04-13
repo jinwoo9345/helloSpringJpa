@@ -15,10 +15,10 @@ public class CategoryForm {
     @Size(max = 50, message = "50자 이내로 입력하세요")
     private String name;
 
-    // 카테고리 등록 요청시
+    /*// 카테고리 등록 요청시 ( 현재 불필요)
     public Category toEntity() {
         return new Category(this.name);
-    }
+    }*/
 
     // 카테고리 조회 요청시
     public static CategoryForm from(Category category) {
