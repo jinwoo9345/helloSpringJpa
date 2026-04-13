@@ -87,6 +87,17 @@ public class ProductService {
         return productRepository.findById(id);
     }
 
+
+    // 키워드를 통한 상품 조회
+    public List<Product> searchByName(String keyword) {
+        return productRepository.findByNameContaining(keyword);
+    }
+
+    // 카테고리를 통한 상품 조회
+    public List<Product> searchByCategory(Long categoryId) {
+        return productRepository.findByCategoryId(categoryId); }
+
+
     /**
      * 새 상품 등록
      *
