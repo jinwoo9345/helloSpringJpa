@@ -98,14 +98,23 @@ public class ProductService {
     public List<Product> searchByCategory(Long categoryId) {
         return productRepository.findByCategoryId(categoryId); }
 */
-    // ProductService.java
+
     public List<Product> search(String keyword, Long categoryId) {
-        if (StringUtils.hasText(keyword)) {
+        boolean hasKeyword = StringUtils.hasText(keyword);
+        boolean hasCategory = (categoryId != null);
+
+        if (hasKeyword && hasCategory) {
+            return productRepository.findByNameAndCategoryId(keyword, categoryId);
+        }
+
+        if (hasKeyword) {
             return productRepository.findByNameContaining(keyword);
         }
-        if (categoryId != null) {
+
+        if (hasCategory) {
             return productRepository.findByCategoryId(categoryId);
         }
+
         return productRepository.findAll();
     }
 
