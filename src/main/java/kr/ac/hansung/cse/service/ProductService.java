@@ -6,6 +6,7 @@ import kr.ac.hansung.cse.repository.CategoryRepository;
 import kr.ac.hansung.cse.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -88,7 +89,7 @@ public class ProductService {
     }
 
 
-    // 키워드를 통한 상품 조회
+   /* // 키워드를 통한 상품 조회
     public List<Product> searchByName(String keyword) {
         return productRepository.findByNameContaining(keyword);
     }
@@ -96,7 +97,17 @@ public class ProductService {
     // 카테고리를 통한 상품 조회
     public List<Product> searchByCategory(Long categoryId) {
         return productRepository.findByCategoryId(categoryId); }
-
+*/
+    // ProductService.java
+    public List<Product> search(String keyword, Long categoryId) {
+        if (StringUtils.hasText(keyword)) {
+            return productRepository.findByNameContaining(keyword);
+        }
+        if (categoryId != null) {
+            return productRepository.findByCategoryId(categoryId);
+        }
+        return productRepository.findAll();
+    }
 
     /**
      * 새 상품 등록
