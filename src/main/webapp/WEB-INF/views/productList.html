@@ -104,7 +104,9 @@
     </form>
 
     <!-- 결과 없음: #lists.isEmpty()로 빈 리스트 감지 -->
-    <p th:if="${#lists.isEmpty(products)}">검색 결과가 없습니다.</p>
+    <p th:if="${products.isEmpty()}" style="background-color: skyblue; color: black; padding: 15px; border-radius: 5px; text-align: center; font-weight: bold;">
+        검색 결과가 없습니다.
+    </p>
 
     <h1>상품 목록</h1>
 
